@@ -1,0 +1,52 @@
+.messageItem {
+    position: relative;
+}
+.messageItem:last-child, .texts:last-child {
+    margin-bottom: 0;
+}
+
+.texts {
+    position: relative;
+    border-radius: 4px;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.user {
+    background-color: #6a63;
+}
+
+.assistant {
+    background-color: #a6b3;
+}
+
+.textDiv {
+    /*background-color: #349;*/
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 5px;
+    margin: 1rem 1rem;
+}
+.textDiv .texts {
+    margin: 0;
+    width: calc(100% - 120px);
+}
+
+.icon {
+    /*background-color: #283;*/
+    position: relative;
+    width: 120px;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+}
+.name {
+    font-size: .8rem;
+    margin-top: .5rem;
+    text-transform: capitalize;
+}
+
+
