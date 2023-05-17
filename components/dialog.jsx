@@ -11,13 +11,22 @@ import CustomTheme from './customtheme'
 import { Typography } from '@mui/material'
 
 export default function Dialog({ 
-    caption = 'Lorem ipsum dolor amet',
+    title = '',
+    caption = 'caption',
     onConfirm = undefined,
     onClose = undefined,
 }) {
     return (
         <div className={classes.container}>
             <div className={classes.dialog}>
+                {
+                    title &&
+                    <div className={classes.header}>
+                        <CustomTheme>
+                            <Typography variant='h4' component='h4' sx={{fontSize: '1.1rem', fontWeight: '500', }}>{ title }</Typography>
+                        </CustomTheme>
+                    </div>
+                }
                 <div className={classes.caption}>
                     <CustomTheme>
                         <Typography>{ caption }</Typography>
@@ -25,8 +34,8 @@ export default function Dialog({
                 </div>
                 <div className={classes.action}>
                     <CustomTheme>
-                        <Button onClick={onConfirm} variant="outlined" sx={{mr: 1, width: 100, }}>OK</Button>
-                        <Button onClick={onClose} variant="outlined" sx={{width: 100, }}>Cancel</Button>
+                        <Button onClick={onConfirm} variant="outlined" sx={{mr: 1, width: 100, }}>Yes</Button>
+                        <Button onClick={onClose} variant="outlined" sx={{width: 100, }}>No</Button>
                     </CustomTheme>
                 </div>
             </div>
@@ -35,6 +44,10 @@ export default function Dialog({
 }
 
 Dialog.propTypes = {
+    /**
+     * Title string
+     */
+    title: PropTypes.string,
     /**
      * Dialog's caption String
      */

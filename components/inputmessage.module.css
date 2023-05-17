@@ -1,0 +1,21 @@
+.input {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #fff;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.text {
+    margin: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+
+    .input {
+        background-color: #222;
+    }
+
+}

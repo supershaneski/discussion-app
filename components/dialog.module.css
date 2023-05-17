@@ -19,14 +19,18 @@
     min-width: 250px;
     max-width: 400px;
     border-radius: 5px;
-    padding: 1rem;
     box-sizing: border-box;
     margin-top: 1rem;
 }
 
+.header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 1rem;
+}
+
 .caption {
     position: relative;
-    padding: 1rem 0;
+    padding: 1rem 1rem 0rem 1rem;
     text-align: center;
 }
 
@@ -34,10 +38,14 @@
     position: relative;
     display: flex;
     justify-content: flex-end;
+    padding: 1rem;
 }
 
 @media (prefers-color-scheme: dark) {
     .dialog {
         background-color: #242424;
+    }
+    .header {
+        border-bottom: 1px solid rgba(69, 69, 69, 0.25);
     }
 }

@@ -3,18 +3,12 @@
 import React from 'react'
 import { createPortal } from 'react-dom'
 
-import IconButton from '@mui/material/IconButton'
-import Box from '@mui/material/Box'
-import TextField from '@mui/material/TextField'
-import InputAdornment from '@mui/material/InputAdornment'
-import ClearIcon from '@mui/icons-material/Clear'
-import SendIcon from '@mui/icons-material/Send'
-
-import CustomTheme from '../components/customtheme'
 import LoadingText from '../components/loadingtext'
 import Message from '../components/message'
 import Header from '../components/header'
 import Dialog from '../components/dialog'
+
+import InputMessage from '../components/inputmessage'
 
 import useDataStore from '../stores/datastore'
 import useDarkMode from '../lib/usedarkmode'
@@ -54,6 +48,8 @@ export default function Sandbox() {
     const clearData = useDataStore((state) => state.clear)
 
     const inputRef = React.useRef(null)
+    const messageRef = React.useRef(null)
+    const timerRef = React.useRef()
 
     const [inputText, setInputText] = React.useState('')
     const [messageItems, setMessageItems] = React.useState([])
@@ -69,8 +65,19 @@ export default function Sandbox() {
     }, [])
 
     const addMessageItem = (s) => {
+
         addData(s)
         setMessageItems((prev) => [...prev, ...[s]])
+
+        scrollToTop()
+
+    }
+
+    const scrollToTop = () => {
+        clearTimeout(timerRef.current)
+        timerRef.current = setTimeout(() => {
+            messageRef.current.scrollTop = messageRef.current.scrollHeight
+        }, 100)
     }
 
     const handleSubmit = async (e) => {
@@ -105,13 +112,24 @@ export default function Sandbox() {
         //let system = `We will simulate a discussion between different personas in ['Capitalist', 'Socialist','Progressive'].\n` +
         //    `You will respond to the subject of inquiry based on these personas.`
 
+        /*
         let system = `We will simulate a discussion between different personas in ['Person1', 'Person2','Person3'].\n` +
             `You will respond to the subject of inquiry based on these personas.\n` +
             `The following are the descriptions of each personas:\n` +
             `Persona1: a writer, vegan and self-described socialist.\n` +
             `Persona2: a small-business owner, conservative and card carrying republican.\n` +
             `Persona3: a farmer, gun rights activist and libertarian.`
+        */
         
+        let system = `We will simulate a discussion between different personas in ['John', 'Robert','Hubert'].\n` +
+            `You will respond to the subject of inquiry based on these personas.\n` +
+            `The following are the descriptions of each personas:\n` +
+            `John: a liberal arts student, left leaning activist.\n` +
+            `Robert: an engineering student from middle-income family, no political affiliations.\n` +
+            `Hubert: a college basketball varsity player, conservative.`
+        
+        
+
         try {
             
             const response = await sendData(message, previous, system)
@@ -136,9 +154,6 @@ export default function Sandbox() {
 
     const handleRefreshMessages = () => {
         
-        //setMessageItems([])
-        //clearData()
-
         setOpenDialog(true)
 
     }
@@ -165,28 +180,9 @@ export default function Sandbox() {
             title={process.env.siteTitle} 
             onRefresh={handleRefreshMessages}
             />
-            <div className={classes.messages}>
+            <div ref={messageRef} className={classes.messages}>
                 {
                     messageItems.map((item) => {
-                        
-                        //const classItem = item.role === 'user' ? [classes.texts, classes.user].join(' ') : [classes.texts, classes.assistant].join(' ')
-
-                        //const texts = item.content.split('\n').filter((s) => s.length > 0)
-
-                        /*return (
-                            <div key={item.id} className={classes.messageItem}>
-                                {
-                                    texts.map((t, i) => {
-                                        return (
-                                            <div key={i} className={classItem}>
-                                                { t }
-                                            </div>
-                                        )
-                                    })
-                                }
-                            </div>
-                        )*/
-
                         return (
                             <Message key={item.id} {...item} />
                         )
@@ -199,51 +195,17 @@ export default function Sandbox() {
                     </div>
                 }
             </div>
-            <div className={classes.input}>
-                <div className={classes.text}>
-                    <CustomTheme>
-                        <Box 
-                        component="form" 
-                        onSubmit={handleSubmit}
-                        noValidate>
-                            <TextField 
-                            disabled={loading}
-                            fullWidth
-                            multiline
-                            maxRows={6}
-                            inputRef={inputRef}
-                            value={inputText}
-                            //placeholder={setCaption('write-message')}
-                            onChange={(e) => setInputText(e.target.value)}
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment position="end">
-                                        <>
-                                        <IconButton
-                                        disabled={inputText.length === 0}
-                                        onClick={() => setInputText('')}
-                                        >
-                                            <ClearIcon />
-                                        </IconButton>
-                                        <IconButton
-                                        disabled={inputText.length === 0}
-                                        onClick={handleSubmit}
-                                        >
-                                            <SendIcon />
-                                        </IconButton>
-                                        </>
-                                    </InputAdornment>
-                                ),
-                            }}
-                            />
-                        </Box>
-                    </CustomTheme>
-                </div>
-            </div>
+            <InputMessage
+            ref={inputRef}
+            loading={loading}
+            inputText={inputText}
+            setInputText={setInputText}
+            onSubmit={handleSubmit}
+            />
             {
                 openDialog && createPortal(
                     <Dialog 
-                    //caption='Do you really want to clear the messages?'
+                    title='New Topic'
                     caption='Do you want to start a new topic?'
                     onConfirm={handleDialogConfirm}
                     onClose={handleDialogClose}

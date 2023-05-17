@@ -11,6 +11,11 @@
     justify-content: space-between;
     align-items: center;
 }
+.banner {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+}
 .icons {
     position: relative;
 }
