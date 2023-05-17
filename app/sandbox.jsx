@@ -121,12 +121,15 @@ export default function Sandbox() {
             `Persona3: a farmer, gun rights activist and libertarian.`
         */
         
-        let system = `We will simulate a discussion between different personas in ['John', 'Robert','Hubert'].\n` +
-            `You will respond to the subject of inquiry based on these personas.\n` +
-            `The following are the descriptions of each personas:\n` +
-            `John: a liberal arts student, left leaning activist.\n` +
-            `Robert: an engineering student from middle-income family, no political affiliations.\n` +
-            `Hubert: a college basketball varsity player, conservative.`
+        let system = `We will simulate a discussion between different personas in ['Capitalist', 'Socialist','Libertarian'].\n` +
+            `You will respond to the subject of inquiry based on these personas.`
+            //`The following are the descriptions of each personas:\n` +
+            //`John: Capitalist.\n` +
+            //`Robert: socialist.\n` +
+            //`Hubert: libertarian.`
+            //`John: a liberal arts student, left leaning activist.\n` +
+            //`Robert: an engineering student from middle-income family, no political affiliations.\n` +
+            //`Hubert: a college basketball varsity player, conservative.`
         
         
 

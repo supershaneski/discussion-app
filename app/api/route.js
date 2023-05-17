@@ -22,8 +22,6 @@ export async function POST(request) {
         })
     }
 
-    console.log('submit inquiry', (new Date()).toLocaleTimeString())
-
     let text = ''
 
     try {

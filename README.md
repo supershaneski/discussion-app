@@ -9,6 +9,16 @@ This is a discussion app that allows you to explore various viewpoints on specif
 
 Expand your knowledge and broaden your understanding of different perspectives in an intuitive and interactive manner.
 
+# App
+
+Sample screenshot
+
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot1.jpeg">
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot2.jpeg">
+  <img alt="Screenshot" src="./docs/story1.jpeg">
+</picture>
+
 # Setup
 
 Clone the repository and install the dependencies
