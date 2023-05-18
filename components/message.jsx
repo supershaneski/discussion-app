@@ -8,12 +8,27 @@ import Avatar from '@mui/material/Avatar'
 
 import CustomTheme from './customtheme'
 
+import useDataStore from '../stores/datastore'
+
 import classes from './message.module.css'
 
 export default function Message({ 
     role, 
     content 
 }) {
+
+    const characters = useDataStore((state) => state.characters)
+
+    const setDescription = (name) => {
+
+        if(characters.length === 0) return ''
+
+        const character = characters.find((item) => item.name.toLowerCase() === name.toLowerCase())
+
+        if(!character) return ''
+
+        return character.description
+    }
 
     if(role === 'user') {
         return (
@@ -46,7 +61,7 @@ export default function Message({
                 msgs[index].items.push(items[i])
             } else {
                 msgs[0] = {
-                    name: 'Everyone',
+                    name: 'AI',
                     items: [items[i]],
                 }
             }
@@ -56,14 +71,17 @@ export default function Message({
     return (
         <div className={classes.messageItem}>
         {
-            msgs.map((m) => {
+            msgs.map((m, j) => {
                 return (
-                    <div key={ m.name } className={classes.textDiv}>
+                    <div key={ j } className={classes.textDiv}>
                         <div className={classes.icon}>
                             <CustomTheme>
                                 <Avatar alt={ m.name } />
                             </CustomTheme>
-                            <div className={classes.name}>{ m.name }</div>
+                            <div className={classes.name}>
+                                <span className={classes.nametext}>{ m.name }</span><br />
+                                <span className={classes.desctext}>{ setDescription(m.name) }</span>
+                            </div>
                         </div>
                         <div className={classes.divMsg}>
                             <div className={[classes.texts, classes.assistant].join(' ')}>

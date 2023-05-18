@@ -77,6 +77,11 @@
     font-size: .8rem;
     margin-top: .5rem;
     text-transform: capitalize;
+    text-align: center;
+}
+.desctext {
+    font-size: .7rem;
+    opacity: 0.8;
 }
 
 @media (prefers-color-scheme: dark) {
