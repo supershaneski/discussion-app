@@ -14,8 +14,16 @@ Expand your knowledge and broaden your understanding of different perspectives i
 Sample screenshot
 
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot1.jpeg">
-  <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot2.jpeg">
+  <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot02.jpeg">
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot12.jpeg">
+  <img alt="Screenshot" src="./docs/story1.jpeg">
+</picture>
+
+Settings
+
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot01.jpeg">
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot11.jpeg">
   <img alt="Screenshot" src="./docs/story1.jpeg">
 </picture>
 
