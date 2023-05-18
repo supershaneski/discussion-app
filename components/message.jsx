@@ -42,7 +42,14 @@ export default function Message({
                 items: [str],
             }
         } else {
-            msgs[index].items.push(items[i])
+            if(i > 0) {
+                msgs[index].items.push(items[i])
+            } else {
+                msgs[0] = {
+                    name: 'Everyone',
+                    items: [items[i]],
+                }
+            }
         }
     }
 

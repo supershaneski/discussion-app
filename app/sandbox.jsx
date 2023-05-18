@@ -6,6 +6,7 @@ import { createPortal } from 'react-dom'
 import MessageList from '../components/messagelist'
 import Banner from '../components/banner'
 import Dialog from '../components/dialog'
+import Settings from '../components/settings'
 import InputMessage from '../components/inputmessage'
 
 import useDataStore from '../stores/datastore'
@@ -44,21 +45,26 @@ export default function Sandbox() {
     const data = useDataStore((state) => state.data)
     const addData = useDataStore((state) => state.add)
     const clearData = useDataStore((state) => state.clear)
+    const characters = useDataStore((state) => state.characters)
 
     const inputRef = React.useRef(null)
     const messageRef = React.useRef(null)
     const timerRef = React.useRef()
 
     const [inputText, setInputText] = React.useState('')
+    const [characterItems, setCharacterItems] = React.useState([])
     const [messageItems, setMessageItems] = React.useState([])
-
     const [loading, setLoading] = React.useState(false)
-
     const [openDialog, setOpenDialog] = React.useState(false)
+    const [openSetting, setOpenSetting] = React.useState(false)
 
     React.useEffect(() => {
 
+        console.log(data)
+
         setMessageItems(data)
+
+        setCharacterItems(characters)
 
     }, [])
 
@@ -107,30 +113,14 @@ export default function Sandbox() {
 
         inputRef.current.blur()
 
-        //let system = `We will simulate a discussion between different personas in ['Capitalist', 'Socialist','Progressive'].\n` +
-        //    `You will respond to the subject of inquiry based on these personas.`
-
-        /*
-        let system = `We will simulate a discussion between different personas in ['Person1', 'Person2','Person3'].\n` +
+        let system = `We will simulate a discussion between different personas in ['${characterItems[0].name}', '${characterItems[1].name}','${characterItems[2].name}'].\n` +
             `You will respond to the subject of inquiry based on these personas.\n` +
             `The following are the descriptions of each personas:\n` +
-            `Persona1: a writer, vegan and self-described socialist.\n` +
-            `Persona2: a small-business owner, conservative and card carrying republican.\n` +
-            `Persona3: a farmer, gun rights activist and libertarian.`
-        */
-        
-        let system = `We will simulate a discussion between different personas in ['Capitalist', 'Socialist','Libertarian'].\n` +
-            `You will respond to the subject of inquiry based on these personas.`
-            //`The following are the descriptions of each personas:\n` +
-            //`John: Capitalist.\n` +
-            //`Robert: socialist.\n` +
-            //`Hubert: libertarian.`
-            //`John: a liberal arts student, left leaning activist.\n` +
-            //`Robert: an engineering student from middle-income family, no political affiliations.\n` +
-            //`Hubert: a college basketball varsity player, conservative.`
+            `${characterItems[0].name}: ${characterItems[0].description}.\n` +
+            `${characterItems[1].name}: ${characterItems[1].description}.\n` +
+            `${characterItems[2].name}: ${characterItems[2].description}.`
         
         
-
         try {
             
             const response = await sendData(message, previous, system)
@@ -150,6 +140,11 @@ export default function Sandbox() {
             console.log(error)
 
         }
+        
+
+        //console.log(system)
+
+        //setLoading(false)
 
     }
 
@@ -174,12 +169,33 @@ export default function Sandbox() {
 
     }
 
+    const handleOpenSetting = () => {
+
+        setOpenSetting(true)
+
+    }
+
+    const handleSettingConfirm = (data) => {
+        
+        setCharacterItems(data)
+        
+        setOpenSetting(false)
+
+    }
+
+    const handleSettingClose = () => {
+        
+        setOpenSetting(false)
+
+    }
+
     return (
         <div className={classes.container}>
             <Banner 
             disabled={messageItems.length === 0} 
             title={process.env.siteTitle} 
             onRefresh={handleRefreshMessages}
+            onSettings={handleOpenSetting}
             />
             <MessageList 
             ref={messageRef} 
@@ -200,6 +216,15 @@ export default function Sandbox() {
                     caption={`Do you want to start a new topic?`}
                     onConfirm={handleDialogConfirm}
                     onClose={handleDialogClose}
+                    />,
+                    document.body,
+                )
+            }
+            {
+                openSetting && createPortal(
+                    <Settings 
+                    onConfirm={handleSettingConfirm}
+                    onClose={handleSettingClose}
                     />,
                     document.body,
                 )
