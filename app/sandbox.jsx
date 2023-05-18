@@ -174,23 +174,6 @@ export default function Sandbox() {
 
     }
 
-    /*
-    <div ref={messageRef} className={classes.messages}>
-                {
-                    messageItems.map((item) => {
-                        return (
-                            <Message key={item.id} {...item} />
-                        )
-                    })
-                }
-                {
-                    loading &&
-                    <div className={classes.loader}>
-                        <LoadingText />
-                    </div>
-                }
-            </div>*/
-    
     return (
         <div className={classes.container}>
             <Banner 

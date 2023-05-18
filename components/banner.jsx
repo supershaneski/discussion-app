@@ -41,7 +41,7 @@ export default function Banner({
                         <RefreshIcon />
                     </IconButton>
                     <IconButton 
-                    disabled={!disabled}
+                    //disabled={!disabled}
                     onClick={onSettings}>
                         <SettingsIcon />
                     </IconButton>
