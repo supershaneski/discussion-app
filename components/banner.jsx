@@ -13,10 +13,10 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer'
 
 import CustomTheme from './customtheme'
 
-import classes from './header.module.css'
+import classes from './banner.module.css'
 
-export default function Header({ 
-    title = "Untitled",
+export default function Banner({ 
+    title = '',
     disabled = false,
     onRefresh = undefined,
     onSettings = undefined,
@@ -41,7 +41,7 @@ export default function Header({
                         <RefreshIcon />
                     </IconButton>
                     <IconButton 
-                    //disabled={disabled}
+                    disabled={!disabled}
                     onClick={onSettings}>
                         <SettingsIcon />
                     </IconButton>
@@ -51,7 +51,7 @@ export default function Header({
     )
 }
 
-Header.propTypes = {
+Banner.propTypes = {
     /**
      * Title string
      */

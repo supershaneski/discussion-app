@@ -52,6 +52,15 @@
     border-radius: 4px;
     /*margin: 1rem;*/
     padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.paratext {
+    position: relative;
+    margin-bottom: 1rem;
+}
+.paratext:last-child {
+    margin-bottom: 0;
 }
 
 .icon {

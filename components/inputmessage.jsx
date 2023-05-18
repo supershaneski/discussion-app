@@ -15,10 +15,10 @@ import CustomTheme from './customtheme'
 
 import classes from './inputmessage.module.css'
 
-const InputMessage = React.forwardRef(function InputMessage({
+const InputMessage = React.forwardRef(function InputMessageDiv({
     loading = false,
-    inputText,
-    setInputText,
+    inputText = '',
+    setInputText = undefined,
     onSubmit = undefined,
 }, ref) {
     return (
@@ -43,13 +43,13 @@ const InputMessage = React.forwardRef(function InputMessage({
                                 <InputAdornment position="end">
                                     <>
                                     <IconButton
-                                    disabled={inputText.length === 0}
+                                    disabled={loading || inputText.length === 0}
                                     onClick={() => setInputText('')}
                                     >
                                         <ClearIcon />
                                     </IconButton>
                                     <IconButton
-                                    disabled={inputText.length === 0}
+                                    disabled={loading || inputText.length === 0}
                                     onClick={onSubmit}
                                     >
                                         <SendIcon />
@@ -65,5 +65,24 @@ const InputMessage = React.forwardRef(function InputMessage({
         </div>
     )
 })
+
+InputMessage.propTypes = {
+    /**
+     * loading bool
+     */
+    loading: PropTypes.bool,
+    /**
+     * inputText string
+     */
+    inputText: PropTypes.string,
+    /**
+     * setInputText func
+     */
+    setInputText: PropTypes.func,
+    /**
+     * onSubmit handler
+     */
+    onSubmit: PropTypes.func,
+}
 
 export default InputMessage

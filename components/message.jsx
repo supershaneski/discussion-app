@@ -4,13 +4,7 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 
-
 import Avatar from '@mui/material/Avatar'
-
-//import PersonIcon from '@mui/icons-material/Person'
-//import FaceIcon from '@mui/icons-material/Face'
-//import Face5Icon from '@mui/icons-material/Face5'
-//import Face6Icon from '@mui/icons-material/Face6'
 
 import CustomTheme from './customtheme'
 
@@ -45,7 +39,7 @@ export default function Message({
             name = k > 0 ? name.substr(0, k) : name
             msgs[index] = {
                 name,
-                items: [str], //[items[i]],
+                items: [str],
             }
         } else {
             msgs[index].items.push(items[i])
@@ -65,15 +59,17 @@ export default function Message({
                             <div className={classes.name}>{ m.name }</div>
                         </div>
                         <div className={classes.divMsg}>
-                        {
-                            m.items.map((n, i) => {
-                                return (
-                                    <div key={i} className={[classes.texts, classes.assistant].join(' ')}>
-                                        { n }
-                                    </div>
-                                )
-                            })
-                        }
+                            <div className={[classes.texts, classes.assistant].join(' ')}>
+                            {
+                                m.items.map((n, i) => {
+                                    return (
+                                        <div key={i} className={classes.paratext}>
+                                            { n }
+                                        </div>
+                                    )
+                                })
+                            }
+                            </div>
                         </div>
                     </div>
                 )

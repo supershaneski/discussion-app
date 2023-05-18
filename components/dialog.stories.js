@@ -7,24 +7,20 @@ export default {
   argTypes: {
     onConfirm: { action: 'onConfirm' },
     onClose: { action: 'onClose' },
-    backgroundColor: {
-      control: 'color',
-    },
   },
 }
 
-/*
-export const Primary = {
-  args: {
-    primary: true,
-    label: 'Button',
-  },
-};
-*/
-
 const Template = (args) => <Dialog {...args} />
 
-export const Primary = Template.bind({})
-Primary.args = {
-  caption: 'Hello world',
+export const Title = Template.bind({})
+
+Title.args = {
+  title: 'Dialog Title',
+  caption: 'Lorem ipsum dolor sit amet sequi velit qui natus.',
+}
+
+export const NoTitle = Template.bind({})
+
+NoTitle.args = {
+  caption: 'Lorem ipsum dolor sit amet sequi velit qui natus.',
 };

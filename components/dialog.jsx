@@ -12,7 +12,7 @@ import { Typography } from '@mui/material'
 
 export default function Dialog({ 
     title = '',
-    caption = 'caption',
+    caption = '',
     onConfirm = undefined,
     onClose = undefined,
 }) {

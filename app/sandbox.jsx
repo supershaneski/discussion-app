@@ -3,11 +3,9 @@
 import React from 'react'
 import { createPortal } from 'react-dom'
 
-import LoadingText from '../components/loadingtext'
-import Message from '../components/message'
-import Header from '../components/header'
+import MessageList from '../components/messagelist'
+import Banner from '../components/banner'
 import Dialog from '../components/dialog'
-
 import InputMessage from '../components/inputmessage'
 
 import useDataStore from '../stores/datastore'
@@ -176,14 +174,8 @@ export default function Sandbox() {
 
     }
 
-    return (
-        <div className={classes.container}>
-            <Header 
-            disabled={messageItems.length === 0} 
-            title={process.env.siteTitle} 
-            onRefresh={handleRefreshMessages}
-            />
-            <div ref={messageRef} className={classes.messages}>
+    /*
+    <div ref={messageRef} className={classes.messages}>
                 {
                     messageItems.map((item) => {
                         return (
@@ -197,7 +189,20 @@ export default function Sandbox() {
                         <LoadingText />
                     </div>
                 }
-            </div>
+            </div>*/
+    
+    return (
+        <div className={classes.container}>
+            <Banner 
+            disabled={messageItems.length === 0} 
+            title={process.env.siteTitle} 
+            onRefresh={handleRefreshMessages}
+            />
+            <MessageList 
+            ref={messageRef} 
+            loading={loading} 
+            items={messageItems}
+            />
             <InputMessage
             ref={inputRef}
             loading={loading}
@@ -209,7 +214,7 @@ export default function Sandbox() {
                 openDialog && createPortal(
                     <Dialog 
                     title='New Topic'
-                    caption='Do you want to start a new topic?'
+                    caption={`Do you want to start a new topic?`}
                     onConfirm={handleDialogConfirm}
                     onClose={handleDialogClose}
                     />,

@@ -1,8 +1,8 @@
-import Header from './header'
+import Banner from './banner'
 
 export default {
-  title: 'MyApp/Header',
-  component: Header,
+  title: 'MyApp/Banner',
+  component: Banner,
   tags: ['autodocs'],
   argTypes: {
     onRefresh: { action: 'onRefresh' },
@@ -18,7 +18,14 @@ export const Primary = {
     title: 'Lorem ipsum dolor',
     disabled: false,
   },
-};
+}
+
+export const Disabled = {
+  args: {
+    title: 'Lorem ipsum dolor',
+    disabled: true,
+  },
+}
 
 /*
 const Template = (args) => <Dialog {...args} />
