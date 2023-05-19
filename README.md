@@ -19,7 +19,7 @@ Sample screenshot
   <img alt="Screenshot" src="./docs/story1.jpeg">
 </picture>
 
-Settings
+Character list
 
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot01.jpeg">
@@ -29,7 +29,7 @@ Settings
 
 # Custom Sample
 
-Discussion board
+Simulated discussion between characters from a galaxy far, far away
 
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot03.jpeg">
@@ -37,12 +37,38 @@ Discussion board
   <img alt="Screenshot" src="./docs/story3.jpeg">
 </picture>
 
-Settings
+Character list
 
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot04.jpeg">
   <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot14.jpeg">
   <img alt="Settings" src="./docs/story4.jpeg">
+</picture>
+
+# Another Custom Sample - Japanese / 日本語
+
+Simulated discussion between known figures of Japan's Bakumatsu period.
+
+---
+
+日本幕末期の著名な人物による模擬討論。
+
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot05.jpeg">
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot15.jpeg">
+  <img alt="Screenshot" src="./docs/story5.jpeg">
+</picture>
+
+Character list
+
+---
+
+登場人物一覧
+
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot06.jpeg">
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot16.jpeg">
+  <img alt="Settings" src="./docs/story6.jpeg">
 </picture>
 
 # Setup
