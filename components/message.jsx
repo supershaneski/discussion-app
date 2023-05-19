@@ -60,7 +60,8 @@ export default function Message({
             if(i > 0) {
                 msgs[index].items.push(items[i])
             } else {
-                msgs[0] = {
+                index++
+                msgs[index] = {
                     name: 'AI',
                     items: [items[i]],
                 }
