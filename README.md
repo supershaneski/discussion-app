@@ -24,7 +24,25 @@ Settings
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot01.jpeg">
   <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot11.jpeg">
-  <img alt="Screenshot" src="./docs/story1.jpeg">
+  <img alt="Settings" src="./docs/story2.jpeg">
+</picture>
+
+# Custom Sample
+
+Discussion board
+
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot03.jpeg">
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot13.jpeg">
+  <img alt="Screenshot" src="./docs/story3.jpeg">
+</picture>
+
+Settings
+
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot04.jpeg">
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot14.jpeg">
+  <img alt="Settings" src="./docs/story4.jpeg">
 </picture>
 
 # Setup
