@@ -5,6 +5,7 @@ export default {
   component: Banner,
   tags: ['autodocs'],
   argTypes: {
+    onCopy: { action: 'onCopy' },
     onRefresh: { action: 'onRefresh' },
     onSettings: { action: 'onSettings' },
     /*backgroundColor: {

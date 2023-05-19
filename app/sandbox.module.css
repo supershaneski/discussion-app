@@ -2,17 +2,3 @@
     position: relative;
     height: 100vh;
 }
-
-.messages {
-    position: absolute;
-    left: 0;
-    top: 50px;
-    width: 100%;
-    height: calc(100% - 140px);
-    overflow-y: auto;
-    z-index: 1;
-}
-
-.loader {
-    margin-top: 1rem;
-}

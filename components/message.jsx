@@ -32,8 +32,8 @@ export default function Message({
 
     if(role === 'user') {
         return (
-            <div className={classes.messageItem}>
-                <div className={[classes.messageDiv, classes.user].join(' ')}>
+            <div className={classes.container}>
+                <div className={classes.userContent}>
                     { content }
                 </div>
             </div>
@@ -69,21 +69,21 @@ export default function Message({
     }
 
     return (
-        <div className={classes.messageItem}>
+        <div className={classes.container}>
         {
             msgs.map((m, j) => {
                 return (
-                    <div key={ j } className={classes.textDiv}>
+                    <div key={ j } className={classes.characterContent}>
                         <div className={classes.icon}>
                             <CustomTheme>
                                 <Avatar alt={ m.name } />
                             </CustomTheme>
-                            <div className={classes.name}>
-                                <span className={classes.nametext}>{ m.name }</span><br />
-                                <span className={classes.desctext}>{ setDescription(m.name) }</span>
+                            <div className={classes.profile}>
+                                <div className={classes.name}>{ m.name }</div>
+                                <div className={classes.description}>{ setDescription(m.name) }</div>
                             </div>
                         </div>
-                        <div className={classes.divMsg}>
+                        <div className={classes.message}>
                             <div className={[classes.texts, classes.assistant].join(' ')}>
                             {
                                 m.items.map((n, i) => {

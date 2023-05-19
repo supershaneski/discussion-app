@@ -60,8 +60,6 @@ export default function Sandbox() {
 
     React.useEffect(() => {
 
-        console.log(data)
-
         setMessageItems(data)
 
         setCharacterItems(characters)
@@ -140,11 +138,7 @@ export default function Sandbox() {
             console.log(error)
 
         }
-        
 
-        //console.log(system)
-
-        //setLoading(false)
 
     }
 
@@ -189,11 +183,40 @@ export default function Sandbox() {
 
     }
 
+    const handleCopy = () => {
+
+        // Prepare text data
+        const data = messageItems.reduce((s, cur) => {
+            return s + cur.content + '\n\n'
+        }, '')
+
+        // Copy to clipboard
+        try {
+            
+            const clipboardItem = new ClipboardItem({
+                'text/plain': new Blob([data], { type: 'text/plain' }),
+            })
+            
+            navigator.clipboard.write([clipboardItem]).then(() => {
+                console.log('copy to clipboard success')
+            }, () => {
+                console.log('copy to clipboard failed')
+            })
+
+        } catch(error) {
+            
+            console.log(error)
+
+        }
+
+    }
+
     return (
         <div className={classes.container}>
             <Banner 
             disabled={messageItems.length === 0} 
             title={process.env.siteTitle} 
+            onCopy={handleCopy}
             onRefresh={handleRefreshMessages}
             onSettings={handleOpenSetting}
             />

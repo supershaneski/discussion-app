@@ -8,8 +8,8 @@ import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import SettingsIcon from '@mui/icons-material/Settings'
 import RefreshIcon from '@mui/icons-material/Refresh'
-
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer'
+import CopyIcon from '@mui/icons-material/ContentCopy'
 
 import CustomTheme from './customtheme'
 
@@ -18,6 +18,7 @@ import classes from './banner.module.css'
 export default function Banner({ 
     title = '',
     disabled = false,
+    onCopy = undefined,
     onRefresh = undefined,
     onSettings = undefined,
 }) {
@@ -37,7 +38,14 @@ export default function Banner({
                 <CustomTheme>
                     <IconButton 
                     disabled={disabled}
-                    onClick={onRefresh} sx={{ mr: 1 }}>
+                    onClick={onCopy} 
+                    sx={{ mr: 1 }}>
+                        <CopyIcon />
+                    </IconButton>
+                    <IconButton 
+                    disabled={disabled}
+                    onClick={onRefresh} 
+                    sx={{ mr: 1 }}>
                         <RefreshIcon />
                     </IconButton>
                     <IconButton 
@@ -60,6 +68,10 @@ Banner.propTypes = {
      * Disabled property
      */
     disabled: PropTypes.bool,
+    /**
+     * onCopy event
+     */
+    onCopy: PropTypes.func,
     /**
      * onRefresh event
      */
