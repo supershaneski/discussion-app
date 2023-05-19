@@ -1,24 +1,7 @@
-/*.messageItem {
-    position: relative;
-}
-.messageItem:last-child, .texts:last-child {
-    margin-bottom: 0;
-}
-.messageDiv {
-    position: relative;
-    border-radius: 4px;
-    margin: 1rem;
-    padding: 1rem;
-}*/
 
 .container {
     position: relative;
 }
-/*
-.container:last-child {
-    margin-bottom: 0;
-}
-*/
 
 .delete {
     content: '\00D7';
@@ -88,31 +71,15 @@
     text-align: center;
 }
 
-
-
-/** ###### */
-.div {
-    position: relative;
-    border-radius: 4px;
-    margin: 1rem;
-    padding: 1rem;
-}
-
-.user {
-    background-color: #e6e6e6;
-}
-
 .assistant {
     background-color: #e6f2ff;
 }
-
 .texts {
     position: relative;
     border-radius: 4px;
     padding: 1rem;
     margin-bottom: 1rem;
 }
-
 .paratext {
     position: relative;
     margin-bottom: 1rem;
@@ -122,10 +89,6 @@
 }
 
 @media (prefers-color-scheme: dark) {
-
-    .user {
-        background-color: #444;
-    }
 
     .assistant {
         background-color: #004080;
