@@ -1,0 +1,16 @@
+{
+    "app-title": ["Discussion App", "ディスカッションアプリ"],
+    "dialog-title": ["New Topic", "新しいトピック"],
+    "dialog-caption": ["Do you want to start a new topic?", "新しいトピックを開始しますか？"],
+    "name": ["Name", "名前"],
+    "description": ["Description", "説明"],
+    "placeholder-name": ["Write name", "名前を書く"],
+    "placeholder-description": ["Write description", "説明を書く"],
+    "placeholder-message-1": ["What's on your mind?", "何を考えているの？"],
+    "placeholder-message-2": ["Expound on the topic...", "トピックについて詳しく説明する"],
+    "character-list": ["Character List", "登場人物一覧"],
+    "save": ["Save", "保存"],
+    "close": ["Close", "閉じる"],
+    "yes": ["Yes", "はい"],
+    "no": ["No", "いいえ"]
+}

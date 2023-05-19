@@ -16,6 +16,9 @@ import useDataStore from '../stores/datastore'
 import classes from './settings.module.css'
 import CustomTheme from './customtheme'
 
+import useCaption from '../lib/usecaption'
+import captions from '../assets/captions.json'
+
 import useAppStore from '../stores/appstore'
 
 export default function Settings({ 
@@ -24,6 +27,8 @@ export default function Settings({
     onConfirm = undefined,
     onClose = undefined,
 }) {
+
+    const setCaption = useCaption(captions)
 
     const isDarkMode = useAppStore((state) => state.darkMode)
 
@@ -86,19 +91,21 @@ export default function Settings({
                 <div className={classes.header}>
                     <CustomTheme>
                         <SettingsIcon sx={{ mr: 1 }} />
-                        <Typography variant='h4' component='h4' sx={{fontSize: '1.1rem', fontWeight: '500', }}>Character List</Typography>
+                        <Typography variant='h4' component='h4' sx={{fontSize: '1.1rem', fontWeight: '500', }}>
+                            {setCaption('character-list')}
+                        </Typography>
                     </CustomTheme>
                 </div>
                 <div className={classes.panel}>
                     <div className={classes.panelRow}>
                         <div className={classes.panelName}>
                             <CustomTheme>
-                                <Typography>Name</Typography>
+                                <Typography>{setCaption('name')}</Typography>
                             </CustomTheme>
                         </div>
                         <div className={classes.panelItem}>
                             <CustomTheme>
-                                <Typography>Description</Typography>
+                                <Typography>{setCaption('description')}</Typography>
                             </CustomTheme>
                         </div>
                     </div>
@@ -113,7 +120,8 @@ export default function Settings({
                                             onChange={(e) => handleName(item.id, e.target.value)}
                                             fullWidth 
                                             size='small' 
-                                            placeholder='Write name' 
+                                            //placeholder='Write name' 
+                                            placeholder={setCaption('placeholder-name')}
                                             sx={{
                                                 border: isDarkMode ? '1px solid rgba(128, 128, 128, 0.125)' : '1px solid rgba(0, 0, 0, 0.125)', 
                                                 borderRadius: '3px', padding: '5px' }} />
@@ -126,7 +134,8 @@ export default function Settings({
                                             onChange={(e) => handleDescription(item.id, e.target.value)}
                                             fullWidth 
                                             size='small' 
-                                            placeholder='Write description' 
+                                            //placeholder='Write description' 
+                                            placeholder={setCaption('placeholder-description')}
                                             sx={{
                                                 border: isDarkMode ? '1px solid rgba(128, 128, 128, 0.125)' : '1px solid rgba(0, 0, 0, 0.125)', 
                                                 borderRadius: '3px', padding: '5px' }} />
@@ -139,8 +148,8 @@ export default function Settings({
                 </div>
                 <div className={classes.action}>
                     <CustomTheme>
-                        <Button disabled={disableddState()} onClick={handleConfirm} variant="outlined" sx={{mr: 1, width: 100, }}>Save</Button>
-                        <Button onClick={onClose} variant="outlined" sx={{width: 100, }}>Close</Button>
+                        <Button disabled={disableddState()} onClick={handleConfirm} variant="outlined" sx={{mr: 1, width: 100, }}>{setCaption('save')}</Button>
+                        <Button onClick={onClose} variant="outlined" sx={{width: 100, }}>{setCaption('close')}</Button>
                     </CustomTheme>
                 </div>
             </div>

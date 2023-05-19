@@ -11,7 +11,9 @@ import InputMessage from '../components/inputmessage'
 
 import useDataStore from '../stores/datastore'
 import useDarkMode from '../lib/usedarkmode'
+import useCaption from '../lib/usecaption'
 import { getSimpleId } from '../lib/utils'
+import captions from '../assets/captions.json'
 
 import classes from './sandbox.module.css'
 
@@ -41,6 +43,8 @@ async function sendData(inquiry, previous, system) {
 export default function Sandbox() {
 
     useDarkMode()
+
+    const setCaption = useCaption(captions)
 
     const data = useDataStore((state) => state.data)
     const addData = useDataStore((state) => state.add)
@@ -215,7 +219,8 @@ export default function Sandbox() {
         <div className={classes.container}>
             <Banner 
             disabled={messageItems.length === 0} 
-            title={process.env.siteTitle} 
+            //title={process.env.siteTitle} 
+            title={setCaption('app-title')}
             onCopy={handleCopy}
             onRefresh={handleRefreshMessages}
             onSettings={handleOpenSetting}
@@ -227,6 +232,7 @@ export default function Sandbox() {
             />
             <InputMessage
             ref={inputRef}
+            hasStarted={messageItems.length > 0}
             loading={loading}
             inputText={inputText}
             setInputText={setInputText}
@@ -235,8 +241,10 @@ export default function Sandbox() {
             {
                 openDialog && createPortal(
                     <Dialog 
-                    title='New Topic'
-                    caption={`Do you want to start a new topic?`}
+                    //title='New Topic'
+                    //caption={`Do you want to start a new topic?`}
+                    title={setCaption('dialog-title')}
+                    caption={setCaption('dialog-caption')}
                     onConfirm={handleDialogConfirm}
                     onClose={handleDialogClose}
                     />,

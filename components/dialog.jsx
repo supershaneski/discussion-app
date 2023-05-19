@@ -10,12 +10,18 @@ import classes from './dialog.module.css'
 import CustomTheme from './customtheme'
 import { Typography } from '@mui/material'
 
+import captions from '../assets/captions.json'
+import useCaption from '../lib/usecaption'
+
 export default function Dialog({ 
     title = '',
     caption = '',
     onConfirm = undefined,
     onClose = undefined,
 }) {
+
+    const setCaption = useCaption(captions)
+
     return (
         <div className={classes.container}>
             <div className={classes.dialog}>
@@ -34,8 +40,8 @@ export default function Dialog({
                 </div>
                 <div className={classes.action}>
                     <CustomTheme>
-                        <Button onClick={onConfirm} variant="outlined" sx={{mr: 1, width: 100, }}>Yes</Button>
-                        <Button onClick={onClose} variant="outlined" sx={{width: 100, }}>No</Button>
+                        <Button onClick={onConfirm} variant="outlined" sx={{mr: 1, width: 100, }}>{setCaption('yes')}</Button>
+                        <Button onClick={onClose} variant="outlined" sx={{width: 100, }}>{setCaption('no')}</Button>
                     </CustomTheme>
                 </div>
             </div>

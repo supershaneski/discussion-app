@@ -11,16 +11,23 @@ import InputAdornment from '@mui/material/InputAdornment'
 import ClearIcon from '@mui/icons-material/Clear'
 import SendIcon from '@mui/icons-material/Send'
 
+import useCaption from '../lib/usecaption'
+import captions from '../assets/captions.json'
+
 import CustomTheme from './customtheme'
 
 import classes from './inputmessage.module.css'
 
 const InputMessage = React.forwardRef(function InputMessageDiv({
+    hasStarted = false,
     loading = false,
     inputText = '',
     setInputText = undefined,
     onSubmit = undefined,
 }, ref) {
+
+    const setCaption = useCaption(captions)
+
     return (
         <div className={classes.input}>
             <div className={classes.text}>
@@ -30,6 +37,7 @@ const InputMessage = React.forwardRef(function InputMessageDiv({
                     onSubmit={onSubmit}
                     noValidate>
                         <TextField 
+                        placeholder={hasStarted ? setCaption('placeholder-message-2') : setCaption('placeholder-message-1')}
                         disabled={loading}
                         fullWidth
                         multiline
@@ -67,6 +75,10 @@ const InputMessage = React.forwardRef(function InputMessageDiv({
 })
 
 InputMessage.propTypes = {
+    /**
+     * hasStarted bool
+     */
+    hasStarted: PropTypes.bool,
     /**
      * loading bool
      */
