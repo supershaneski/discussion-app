@@ -48,6 +48,7 @@ export default function Sandbox() {
 
     const data = useDataStore((state) => state.data)
     const addData = useDataStore((state) => state.add)
+    const deleteData = useDataStore((state) => state.delete)
     const clearData = useDataStore((state) => state.clear)
     const characters = useDataStore((state) => state.characters)
 
@@ -215,6 +216,17 @@ export default function Sandbox() {
 
     }
 
+    const handleDelete = (id) => {
+        
+        setMessageItems((items) => {
+            let msgs = items.slice(0).filter((item) => item.id !== id)
+            return msgs
+        })
+
+        deleteData(id)
+
+    }
+
     return (
         <div className={classes.container}>
             <Banner 
@@ -229,6 +241,7 @@ export default function Sandbox() {
             ref={messageRef} 
             loading={loading} 
             items={messageItems}
+            onDelete={handleDelete}
             />
             <InputMessage
             ref={inputRef}

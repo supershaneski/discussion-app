@@ -20,6 +20,27 @@
 }
 */
 
+.delete {
+    content: '\00D7';
+    border-radius: 50%;
+    background-color: #9999;
+    color: #fff;
+    position: absolute;
+    right: .5rem;
+    top: -.5rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    font-size: 1rem;
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    display: none;
+}
+.container:hover .delete {
+    display: flex;
+}
+
 .userContent {
     background-color: #e6e6e6;
     position: relative;
@@ -112,6 +133,11 @@
 
     .userContent {
         background-color: #444;
+    }
+
+    .delete {
+        background-color: #fff9;
+        color: #222;
     }
 
 }

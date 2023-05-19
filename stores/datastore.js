@@ -19,6 +19,10 @@ const useDataStore = create(
                 set({ data })
 
             },
+            delete: (id) => {
+                let data = get().data.slice(0).filter((item) => item.id !== id)
+                set({ data })
+            },
             clear: () => set({ data: [] }),
         }),
         {
