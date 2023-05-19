@@ -3,11 +3,19 @@ discussion-app
 
 A sample React application built with Next.js 13 and powered by the OpenAI Chat API. 
 
+The application supports Japanese language settings. (日本語対応)
+
 # Description
 
 This is a discussion app that allows you to explore various viewpoints on specific topics. Simply provide a topic, and it will generate multiple responses based on different perspectives, enabling you to learn and understand various views. You can customize the attributes of each point of view or character. 
 
 Expand your knowledge and broaden your understanding of different perspectives in an intuitive and interactive manner.
+
+---
+
+これは、特定のトピックについてさまざまな視点を探索できるディスカッションアプリです。トピックを入力するだけで、さまざまな視点に基づいて複数の回答を生成し、さまざまな視点を学習および理解できるようにします。各視点またはキャラクターの属性をカスタマイズできます。
+
+直感的でインタラクティブな方法で、知識を広げ、さまざまな視点への理解を深めましょう。
 
 # App
 
