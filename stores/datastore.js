@@ -22,7 +22,7 @@ const useDataStore = create(
 
             },
             delete: (id) => {
-                let data = get().data.slice(0).filter((item) => item.id !== id)
+                let data = get().data.slice(0).filter((item) => item.gid !== id)
                 set({ data })
             },
             updateDelete: (v) => set({ deleteStatus: v }),

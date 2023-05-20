@@ -13,6 +13,7 @@ import useDataStore from '../stores/datastore'
 import classes from './message.module.css'
 
 export default function Message({ 
+    gid,
     id,
     role, 
     content,
@@ -38,7 +39,7 @@ export default function Message({
                 <div className={classes.userContent}>
                     { content }
                 </div>
-                <div className={classes.delete} onClick={() => onDelete(id)}>&#215;</div>
+                <div className={classes.delete} onClick={() => onDelete(gid)}>&#215;</div>
             </div>
         )
     }
@@ -104,12 +105,16 @@ export default function Message({
                 )
             })
         }
-        <div className={classes.delete} onClick={() => onDelete(id)}>&#215;</div>
+        <div className={classes.delete} onClick={() => onDelete(gid)}>&#215;</div>
         </div>
     )
 }
 
 Message.propTypes = {
+    /**
+     * groupid string
+     */
+    gid: PropTypes.string,
     /**
      * id string
      */

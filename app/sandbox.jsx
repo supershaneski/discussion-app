@@ -114,8 +114,11 @@ export default function Sandbox() {
             }
         })
 
+        const groupId = getSimpleId()
+
         addMessageItem({
             id: getSimpleId(),
+            gid: groupId,
             role: 'user',
             content: message,
         })
@@ -140,6 +143,7 @@ export default function Sandbox() {
 
             addMessageItem({
                 id: getSimpleId(),
+                gid: groupId,
                 role: 'assistant',
                 content: response.text,
             })
@@ -183,7 +187,7 @@ export default function Sandbox() {
         } else {
 
             setMessageItems((items) => {
-                let msgs = items.slice(0).filter((item) => item.id !== v)
+                let msgs = items.slice(0).filter((item) => item.gid !== v)
                 return msgs
             })
             
@@ -252,7 +256,7 @@ export default function Sandbox() {
         if(deleteStatus > 0) {
 
             setMessageItems((items) => {
-                let msgs = items.slice(0).filter((item) => item.id !== id)
+                let msgs = items.slice(0).filter((item) => item.gid !== id)
                 return msgs
             })
     
