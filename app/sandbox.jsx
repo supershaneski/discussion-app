@@ -141,11 +141,13 @@ export default function Sandbox() {
 
             setLoading(false)
 
+            const text = response.text.length === 0 ? setCaption('error-unexpected') : response.text
+
             addMessageItem({
                 id: getSimpleId(),
                 gid: groupId,
                 role: 'assistant',
-                content: response.text,
+                content: text,
             })
 
         } catch(error) {

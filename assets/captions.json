@@ -15,5 +15,6 @@
     "save": ["Save", "保存"],
     "close": ["Close", "閉じる"],
     "yes": ["Yes", "はい"],
-    "no": ["No", "いいえ"]
+    "no": ["No", "いいえ"],
+    "error-unexpected": ["An unexpected error occurred.", "想定外のエラーが発生しました。もう一度お試しください。"]
 }

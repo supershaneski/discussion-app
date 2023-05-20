@@ -1,11 +1,13 @@
 .container {
     position: absolute;
     left: 0;
-    top: 50px;
+    top: 75px;
     width: 100%;
-    height: calc(100% - 140px);
+    height: calc(100% - 160px);
+    padding: 0 1rem;
     overflow-y: auto;
     z-index: 1;
+    box-sizing: border-box;
 }
 
 .loader {

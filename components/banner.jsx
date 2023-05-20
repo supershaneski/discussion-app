@@ -28,7 +28,7 @@ export default function Banner({
                 <CustomTheme>
                     <QuestionAnswerIcon />
                     <Typography 
-                    sx={{ fontWeight: 400, fontSize: '1rem', ml: 1 }} 
+                    sx={{ fontWeight: 400, fontSize: '1rem', ml: 2 }} 
                     variant="h1" 
                     //gutterBottom
                     >{title}</Typography>
