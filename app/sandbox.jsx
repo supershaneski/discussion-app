@@ -50,6 +50,12 @@ export default function Sandbox() {
     const addData = useDataStore((state) => state.add)
     const deleteData = useDataStore((state) => state.delete)
     const clearData = useDataStore((state) => state.clear)
+
+    const deleteStatus = useDataStore((state) => state.deleteStatus)
+    const clearStatus = useDataStore((state) => state.clearStatus)
+    const setDeleteStatus = useDataStore((state) => state.updateDelete)
+    const setClearStatus = useDataStore((state) => state.updateClear)
+
     const characters = useDataStore((state) => state.characters)
 
     const inputRef = React.useRef(null)
@@ -61,7 +67,9 @@ export default function Sandbox() {
     const [messageItems, setMessageItems] = React.useState([])
     const [loading, setLoading] = React.useState(false)
     const [openDialog, setOpenDialog] = React.useState(false)
+    const [dialogMode, setDialogMode] = React.useState(0)
     const [openSetting, setOpenSetting] = React.useState(false)
+    const [dialogArg, setDialogArg] = React.useState('')
 
     React.useEffect(() => {
 
@@ -149,16 +157,39 @@ export default function Sandbox() {
 
     const handleRefreshMessages = () => {
         
-        setOpenDialog(true)
+        if(clearStatus > 0) {
+
+            setMessageItems([])
+            clearData()
+
+        } else {
+
+            setDialogMode(0)
+            setOpenDialog(true)
+
+        }
 
     }
 
-    const handleDialogConfirm = () => {
+    const handleDialogConfirm = (v) => {
 
         setOpenDialog(false)
 
-        setMessageItems([])
-        clearData()
+        if(dialogMode === 0) {
+
+            setMessageItems([])
+            clearData()
+
+        } else {
+
+            setMessageItems((items) => {
+                let msgs = items.slice(0).filter((item) => item.id !== v)
+                return msgs
+            })
+            
+            deleteData(v)
+
+        }
 
     }
 
@@ -217,13 +248,37 @@ export default function Sandbox() {
     }
 
     const handleDelete = (id) => {
-        
-        setMessageItems((items) => {
-            let msgs = items.slice(0).filter((item) => item.id !== id)
-            return msgs
-        })
 
-        deleteData(id)
+        if(deleteStatus > 0) {
+
+            setMessageItems((items) => {
+                let msgs = items.slice(0).filter((item) => item.id !== id)
+                return msgs
+            })
+    
+            deleteData(id)
+
+        } else {
+
+            setDialogArg(id)
+            setDialogMode(1)
+            setOpenDialog(true)
+
+        }
+
+    }
+
+    const handleStatus = (n) => {
+
+        if(dialogMode > 0) {
+
+            setDeleteStatus(n)
+
+        } else {
+
+            setClearStatus(n)
+
+        }
 
     }
 
@@ -256,10 +311,13 @@ export default function Sandbox() {
                     <Dialog 
                     //title='New Topic'
                     //caption={`Do you want to start a new topic?`}
-                    title={setCaption('dialog-title')}
-                    caption={setCaption('dialog-caption')}
+                    title={dialogMode > 0 ? setCaption('delete-title') : setCaption('dialog-title')}
+                    caption={dialogMode > 0 ? setCaption('delete-caption') : setCaption('dialog-caption')}
+                    status={dialogMode > 0 ? deleteStatus : clearStatus}
+                    param={dialogArg}
                     onConfirm={handleDialogConfirm}
                     onClose={handleDialogClose}
+                    onStatus={handleStatus}
                     />,
                     document.body,
                 )

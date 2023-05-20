@@ -34,6 +34,11 @@
     text-align: center;
 }
 
+.confirm {
+    position: relative;
+    padding: 0rem 1rem;
+}
+
 .action {
     position: relative;
     display: flex;

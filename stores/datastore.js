@@ -10,6 +10,8 @@ const useDataStore = create(
                 { id: 2, name: 'Libertarian', description: '' },
             ],
             data: [],
+            deleteStatus: 0,
+            clearStatus: 0,
             update: (characters) => set({ characters }),
             add: (item) => {
 
@@ -23,12 +25,14 @@ const useDataStore = create(
                 let data = get().data.slice(0).filter((item) => item.id !== id)
                 set({ data })
             },
+            updateDelete: (v) => set({ deleteStatus: v }),
+            updateClear: (v) => set({ clearStatus: v }),
             clear: () => set({ data: [] }),
         }),
         {
             name: "discussion-messages-storage",
             storage: createJSONStorage(() => localStorage),
-            version: 1,
+            version: 2,
         }
     )
 )
