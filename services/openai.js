@@ -63,19 +63,12 @@ export async function textCompletion({
 }
 
 export async function chatCompletion({
-    model = 'gpt-3.5-turbo',
+    model = 'gpt-3.5-turbo-0613',
     max_tokens = 1024,
     temperature = 0,
     messages,
-    //prompt,
-    //question,
 }) {
     try {
-
-        /*const messages = [
-            { role: 'system', content: prompt },
-            { role: 'user', content: question }
-        ]*/
 
         const result = await openai.createChatCompletion({
             messages,

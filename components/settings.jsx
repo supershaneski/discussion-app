@@ -6,10 +6,13 @@ import PropTypes from 'prop-types'
 
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import TextField from '@mui/material/TextField'
+import IconButton from '@mui/material/IconButton'
+//import TextField from '@mui/material/TextField'
 import InputBase from '@mui/material/InputBase'
+import InputAdornment from '@mui/material/InputAdornment'
 
 import SettingsIcon from '@mui/icons-material/Settings'
+import ClearIcon from '@mui/icons-material/Clear'
 
 import useDataStore from '../stores/datastore'
 
@@ -22,8 +25,7 @@ import captions from '../assets/captions.json'
 import useAppStore from '../stores/appstore'
 
 export default function Settings({ 
-    //title = '',
-    //caption = '',
+    isMessageExists = false,
     onConfirm = undefined,
     onClose = undefined,
 }) {
@@ -36,6 +38,8 @@ export default function Settings({
     const updateCharacters = useDataStore((state) => state.update)
 
     const [characterItems, setCharacterItems] = React.useState([])
+
+    const [isWarn, setWarn] = React.useState(false)
 
     React.useEffect(() => {
         setCharacterItems(characters)
@@ -70,6 +74,23 @@ export default function Settings({
     }
 
     const handleConfirm = () => {
+
+        if(isMessageExists) {
+
+            setWarn(true)
+
+        } else {
+
+            //updateCharacters(characterItems)
+            //onConfirm(characterItems)
+
+            handleConfirm2()
+
+        }
+
+    }
+
+    const handleConfirm2 = () => {
 
         updateCharacters(characterItems)
 
@@ -120,11 +141,12 @@ export default function Settings({
                                             onChange={(e) => handleName(item.id, e.target.value)}
                                             fullWidth 
                                             size='small' 
-                                            //placeholder='Write name' 
                                             placeholder={setCaption('placeholder-name')}
                                             sx={{
                                                 border: isDarkMode ? '1px solid rgba(128, 128, 128, 0.125)' : '1px solid rgba(0, 0, 0, 0.125)', 
-                                                borderRadius: '3px', padding: '5px' }} />
+                                                borderRadius: '3px', padding: '5px' 
+                                            }}
+                                            />
                                         </CustomTheme>
                                     </div>
                                     <div className={classes.panelItem}>
@@ -134,11 +156,22 @@ export default function Settings({
                                             onChange={(e) => handleDescription(item.id, e.target.value)}
                                             fullWidth 
                                             size='small' 
-                                            //placeholder='Write description' 
                                             placeholder={setCaption('placeholder-description')}
                                             sx={{
                                                 border: isDarkMode ? '1px solid rgba(128, 128, 128, 0.125)' : '1px solid rgba(0, 0, 0, 0.125)', 
-                                                borderRadius: '3px', padding: '5px' }} />
+                                                borderRadius: '3px', padding: '5px' 
+                                            }}
+                                            endAdornment={
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                    disabled={item.description.length === 0}
+                                                    onClick={() => handleDescription(item.id, '')}
+                                                    >
+                                                        <ClearIcon />
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            }
+                                            />
                                         </CustomTheme>
                                     </div>
                                 </div>
@@ -148,16 +181,44 @@ export default function Settings({
                 </div>
                 <div className={classes.action}>
                     <CustomTheme>
-                        <Button disabled={disableddState()} onClick={handleConfirm} variant="outlined" sx={{mr: 1, width: 100, }}>{setCaption('save')}</Button>
+                        <Button disabled={disableddState()} onClick={handleConfirm} variant="outlined" sx={{mr: 1, width: isMessageExists ? 150 : 100, }}>
+                            { isMessageExists ? setCaption('save-reset') : setCaption('save')}
+                        </Button>
                         <Button onClick={onClose} variant="outlined" sx={{width: 100, }}>{setCaption('close')}</Button>
                     </CustomTheme>
                 </div>
+                {
+                    isWarn &&
+                    <div className={classes.dialogCover}>
+                        <div className={classes.dialogCoverPanel}>
+                            <div className={classes.dialogCoverContent}>
+                                <p className={classes.dialogCoverText}>
+                                    {setCaption('message-reset-1')}<br />{setCaption('message-reset-2')}
+                                </p>
+                            </div>
+                            <div className={classes.dialogCoverAction}>
+                                <CustomTheme>
+                                    <Button onClick={handleConfirm2} variant="outlined" sx={{mr: 1, width: 100 }}>
+                                        {setCaption('yes')}
+                                    </Button>
+                                    <Button onClick={() => setWarn(false)} variant="outlined" sx={{ width: 100 }}>
+                                        {setCaption('no')}
+                                    </Button>
+                                </CustomTheme>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     )
 }
 
 Settings.propTypes = {
+    /**
+     * isMessageExists boolean
+     */
+    isMessageExists: PropTypes.bool,
     /**
      * Title string
      */

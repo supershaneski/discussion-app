@@ -212,6 +212,8 @@ export default function Sandbox() {
     }
 
     const handleSettingConfirm = (data) => {
+
+        setMessageItems([])
         
         setCharacterItems(data)
         
@@ -292,7 +294,6 @@ export default function Sandbox() {
         <div className={classes.container}>
             <Banner 
             disabled={messageItems.length === 0} 
-            //title={process.env.siteTitle} 
             title={setCaption('app-title')}
             onCopy={handleCopy}
             onRefresh={handleRefreshMessages}
@@ -315,8 +316,6 @@ export default function Sandbox() {
             {
                 openDialog && createPortal(
                     <Dialog 
-                    //title='New Topic'
-                    //caption={`Do you want to start a new topic?`}
                     title={dialogMode > 0 ? setCaption('delete-title') : setCaption('dialog-title')}
                     caption={dialogMode > 0 ? setCaption('delete-caption') : setCaption('dialog-caption')}
                     status={dialogMode > 0 ? deleteStatus : clearStatus}
@@ -331,6 +330,7 @@ export default function Sandbox() {
             {
                 openSetting && createPortal(
                     <Settings 
+                    isMessageExists={messageItems.length > 0}
                     onConfirm={handleSettingConfirm}
                     onClose={handleSettingClose}
                     />,
