@@ -193,7 +193,7 @@ export default function Settings({
                         <div className={classes.dialogCoverPanel}>
                             <div className={classes.dialogCoverContent}>
                                 <p className={classes.dialogCoverText}>
-                                    {setCaption('message-reset-1')}<br />{setCaption('message-reset-2')}
+                                    {setCaption('message-reset-1')} {setCaption('message-reset-2')}
                                 </p>
                             </div>
                             <div className={classes.dialogCoverAction}>

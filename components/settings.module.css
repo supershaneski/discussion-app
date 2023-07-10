@@ -75,14 +75,18 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     background-color: #f5f5f5;
     border-radius: 5px;
-    padding: 1rem 1.5rem;
+    /*padding: 1.5rem 2rem;*/
+    width: 300px;
+    padding: 1.5rem;
 }
 .dialogCoverContent {
     position: relative;
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
 }
 .dialogCoverAction {
     position: relative;
+    display: flex;
+    justify-content: flex-end;
 }
 .dialogCoverText {
     margin: 0;
