@@ -126,14 +126,14 @@ export default function Sandbox() {
         setInputText('')
 
         inputRef.current.blur()
-
-        let system = `We will simulate a discussion between different personas in ['${characterItems[0].name}', '${characterItems[1].name}','${characterItems[2].name}'].\n` +
-            `You will respond to the subject of inquiry based on these personas.\n` +
-            `The following are the descriptions of each personas:\n` +
-            `${characterItems[0].name}: ${characterItems[0].description}.\n` +
-            `${characterItems[1].name}: ${characterItems[1].description}.\n` +
-            `${characterItems[2].name}: ${characterItems[2].description}.`
         
+        const persona_names = characterItems.map((item) => `${item.name}`).join(',')
+        const persona_descriptions = characterItems.map((item) => `${item.name}: ${item.description}.`).join('\n')
+
+        let system = `We will simulate a discussion between different personas in [${persona_names}].\n` +
+            `You will respond to the subject of inquiry based on these personas.\n` +
+            `Most of the time your responses should be a sentence or two per persona.\n` +
+            `The following are the descriptions of each personas:\n` + persona_descriptions
         
         try {
             

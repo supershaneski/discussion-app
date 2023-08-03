@@ -40,11 +40,8 @@ const InputMessage = React.forwardRef(function InputMessageDiv({
                         placeholder={hasStarted ? setCaption('placeholder-message-2') : setCaption('placeholder-message-1')}
                         disabled={loading}
                         fullWidth
-                        multiline
-                        maxRows={6}
                         inputRef={ref}
                         value={inputText}
-                        //placeholder={setCaption('write-message')}
                         onChange={(e) => setInputText(e.target.value)}
                         InputProps={{
                             endAdornment: (

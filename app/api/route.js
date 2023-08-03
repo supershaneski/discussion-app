@@ -39,7 +39,7 @@ export async function POST(request) {
             messages,
             temperature: 0.7,
         })
-
+        
     } catch(error) {
         console.log(error)
     }
