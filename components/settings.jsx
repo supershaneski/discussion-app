@@ -176,12 +176,15 @@ export default function Settings({
                             return (
                                 <div key={item.id} className={classes.panelRow}>
                                     <div className={classes.panelAction}>
-                                        <IconButton
-                                        disabled={characterItems.length === 1}
-                                        onClick={() => handleDelete(item.id)}
-                                        >
-                                            <DeleteForeverIcon />
-                                        </IconButton>
+                                        <CustomTheme>
+                                            <IconButton
+                                            size="medium"
+                                            disabled={characterItems.length === 1}
+                                            onClick={() => handleDelete(item.id)}
+                                            >
+                                                <DeleteForeverIcon fontSize="inherit" />
+                                            </IconButton>
+                                        </CustomTheme>
                                     </div>
                                     <div className={classes.panelName}>
                                         <CustomTheme>
@@ -198,10 +201,11 @@ export default function Settings({
                                             endAdornment={
                                                 <InputAdornment position="end">
                                                     <IconButton
+                                                    size="small"
                                                     disabled={item.name.length === 0}
                                                     onClick={() => handleName(item.id, '')}
                                                     >
-                                                        <ClearIcon />
+                                                        <ClearIcon fontSize="inherit" />
                                                     </IconButton>
                                                 </InputAdornment>
                                             }
@@ -223,10 +227,11 @@ export default function Settings({
                                             endAdornment={
                                                 <InputAdornment position="end">
                                                     <IconButton
+                                                    size="small"
                                                     disabled={item.description.length === 0}
                                                     onClick={() => handleDescription(item.id, '')}
                                                     >
-                                                        <ClearIcon />
+                                                        <ClearIcon fontSize="inherit" />
                                                     </IconButton>
                                                 </InputAdornment>
                                             }
