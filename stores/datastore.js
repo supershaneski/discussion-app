@@ -5,9 +5,9 @@ const useDataStore = create(
     persist(
         (set, get) => ({
             characters: [
-                { id: 0, name: 'Capitalist', description: '' },
-                { id: 1, name: 'Socialist', description: '' },
-                { id: 2, name: 'Libertarian', description: '' },
+                { id: "b1aoe817ieo", name: 'Capitalist', description: '' },
+                { id: "5ldkam75ebol", name: 'Socialist', description: '' },
+                { id: "hbe79l05h33h", name: 'Libertarian', description: '' },
             ],
             data: [],
             deleteStatus: 0,

@@ -45,18 +45,31 @@
     position: relative;
     flex-grow: 1;
 }
+.panelAction {
+    position: relative;
+    width: 40px;
+    margin-right: 5px;
+}
 .panelName {
     position: relative;
-    width: 160px;
+    width: 175px; /*160px;*/
     margin-right: 5px;
 }
 
 .action {
     position: relative;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 1rem;
     z-index: 1;
+}
+.actionLeft {
+    position: relative;
+}
+.actionRight {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .dialogCover {

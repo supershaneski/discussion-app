@@ -17,6 +17,8 @@
     "close": ["Close", "閉じる"],
     "yes": ["Yes", "はい"],
     "no": ["No", "いいえ"],
+    "add": ["Add", "追加する"],
+    "new-character": ["New Character", "新規キャラクター"],
     "message-reset-1": ["This will reset the discussion.", "これによって議論はリセットされます。"],
     "message-reset-2": ["Are you sure?", "本当にそうですか？"],
     "error-unexpected": ["An unexpected error occurred.", "想定外のエラーが発生しました。もう一度お試しください。"]

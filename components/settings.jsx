@@ -11,8 +11,10 @@ import IconButton from '@mui/material/IconButton'
 import InputBase from '@mui/material/InputBase'
 import InputAdornment from '@mui/material/InputAdornment'
 
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import SettingsIcon from '@mui/icons-material/Settings'
 import ClearIcon from '@mui/icons-material/Clear'
+import AddIcon from '@mui/icons-material/Add'
 
 import useDataStore from '../stores/datastore'
 
@@ -21,6 +23,8 @@ import CustomTheme from './customtheme'
 
 import useCaption from '../lib/usecaption'
 import captions from '../assets/captions.json'
+
+import { getSimpleId } from '../lib/utils'
 
 import useAppStore from '../stores/appstore'
 
@@ -98,13 +102,49 @@ export default function Settings({
 
     }
 
+    const hasDuplicateNames = (arr) => {
+
+        const nameSet = new Set();
+        
+        for (const item of arr) {
+          if (nameSet.has(item.name)) {
+            return true;
+          }
+          nameSet.add(item.name);
+        }
+        
+        return false;
+    }
+
     const disableddState = React.useCallback(() => {
 
-        let flag = characterItems.some((item) => item.name.trim().length === 0)
+        let flag_empty_name = characterItems.some((item) => item.name.trim().length === 0)
+        let flag_same_name = hasDuplicateNames(characterItems)
 
-        return flag
+        return flag_empty_name || flag_same_name
 
     }, [characterItems])
+
+    const handleDelete = (id) => {
+        
+        setCharacterItems((prev) => {
+            const items = prev.filter((item) => item.id !== id)
+            return items
+        })
+
+    }
+
+    const handleAdd = () => {
+        
+        const newCharacter = {
+            id: getSimpleId(),
+            name: setCaption('new-character'),
+            description: ''
+        }
+
+        setCharacterItems((prev) => [...prev, ...[newCharacter]])
+
+    }
 
     return (
         <div className={classes.container}>
@@ -119,6 +159,7 @@ export default function Settings({
                 </div>
                 <div className={classes.panel}>
                     <div className={classes.panelRow}>
+                        <div className={classes.panelAction} />
                         <div className={classes.panelName}>
                             <CustomTheme>
                                 <Typography>{setCaption('name')}</Typography>
@@ -134,6 +175,14 @@ export default function Settings({
                         characterItems.map((item) => {
                             return (
                                 <div key={item.id} className={classes.panelRow}>
+                                    <div className={classes.panelAction}>
+                                        <IconButton
+                                        disabled={characterItems.length === 1}
+                                        onClick={() => handleDelete(item.id)}
+                                        >
+                                            <DeleteForeverIcon />
+                                        </IconButton>
+                                    </div>
                                     <div className={classes.panelName}>
                                         <CustomTheme>
                                             <InputBase 
@@ -146,6 +195,16 @@ export default function Settings({
                                                 border: isDarkMode ? '1px solid rgba(128, 128, 128, 0.125)' : '1px solid rgba(0, 0, 0, 0.125)', 
                                                 borderRadius: '3px', padding: '5px' 
                                             }}
+                                            endAdornment={
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                    disabled={item.name.length === 0}
+                                                    onClick={() => handleName(item.id, '')}
+                                                    >
+                                                        <ClearIcon />
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            }
                                             />
                                         </CustomTheme>
                                     </div>
@@ -180,12 +239,19 @@ export default function Settings({
                     }
                 </div>
                 <div className={classes.action}>
-                    <CustomTheme>
-                        <Button disabled={disableddState()} onClick={handleConfirm} variant="outlined" sx={{mr: 1, width: isMessageExists ? 150 : 100, }}>
-                            { isMessageExists ? setCaption('save-reset') : setCaption('save')}
-                        </Button>
-                        <Button onClick={onClose} variant="outlined" sx={{width: 100, }}>{setCaption('close')}</Button>
-                    </CustomTheme>
+                    <div className={classes.actionLeft}>
+                        <CustomTheme>
+                            <Button onClick={handleAdd} startIcon={<AddIcon />} variant="outlined" sx={{ width: 100 }}>{setCaption('add')}</Button>
+                        </CustomTheme>
+                    </div>
+                    <div className={classes.actionRight}>
+                        <CustomTheme>
+                            <Button disabled={disableddState()} onClick={handleConfirm} variant="outlined" sx={{mr: 1, width: isMessageExists ? 150 : 100, }}>
+                                { isMessageExists ? setCaption('save-reset') : setCaption('save')}
+                            </Button>
+                            <Button onClick={onClose} variant="outlined" sx={{ width: 100 }}>{setCaption('close')}</Button>
+                        </CustomTheme>
+                    </div>
                 </div>
                 {
                     isWarn &&
