@@ -22,16 +22,19 @@ Sample screenshot
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot02.jpeg">
   <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot12.jpeg">
-  <img alt="Screenshot" src="./docs/story1.jpeg">
+  <img alt="Screenshot" src="./docs/screenshot02.jpeg">
 </picture>
 
 Character list
 
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot01.jpeg">
-  <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot11.jpeg">
-  <img alt="Settings" src="./docs/story2.jpeg">
+  <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot01.png">
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot11.png">
+  <img alt="Settings" src="./docs/screenshot01.png">
 </picture>
+
+It is now possible to add new character or delete character.
+
 
 # Custom Sample
 
@@ -40,7 +43,7 @@ Simulated discussion between characters from a galaxy far, far away
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot03.jpeg">
   <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot13.jpeg">
-  <img alt="Screenshot" src="./docs/story3.jpeg">
+  <img alt="Screenshot" src="./docs/screenshot03.jpeg">
 </picture>
 
 Character list
@@ -48,7 +51,7 @@ Character list
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot04.jpeg">
   <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot14.jpeg">
-  <img alt="Settings" src="./docs/story4.jpeg">
+  <img alt="Settings" src="./docs/screenshot04.jpeg">
 </picture>
 
 # Another Custom Sample - Japanese / 日本語
@@ -62,7 +65,7 @@ Simulated discussion between known figures of Japan's Bakumatsu period.
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot05.jpeg">
   <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot15.jpeg">
-  <img alt="Screenshot" src="./docs/story5.jpeg">
+  <img alt="Screenshot" src="./docs/screenshot05.jpeg">
 </picture>
 
 Character list
@@ -74,7 +77,7 @@ Character list
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="./docs/screenshot06.jpeg">
   <source media="(prefers-color-scheme: dark)" srcset="./docs/screenshot16.jpeg">
-  <img alt="Settings" src="./docs/story6.jpeg">
+  <img alt="Settings" src="./docs/screenshot06.jpeg">
 </picture>
 
 # Setup
